@@ -3,6 +3,7 @@ package br.com.fatec.controller;
 import br.com.fatec.DTO.ILoginDTO;
 import br.com.fatec.exceptions.ContaExisteException;
 import br.com.fatec.model.Conta;
+import br.com.fatec.model.Usuario;
 import java.rmi.RemoteException;
 
 public class LoginController {
@@ -12,7 +13,7 @@ public class LoginController {
         contaProvider = ProviderFactory.createContaProvider();
     }
     
-    public boolean logar(Conta conta) throws RemoteException{
+    public Usuario logar(Conta conta) throws RemoteException{
         return contaProvider.signIn(conta);
     }
     

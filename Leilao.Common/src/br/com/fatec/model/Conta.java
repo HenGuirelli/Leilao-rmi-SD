@@ -9,6 +9,10 @@ public class Conta implements Serializable {
     private String senha;
     private TipoConta tipoConta;
 
+    public void setTipoConta(TipoConta tipoConta) {
+        this.tipoConta = tipoConta;
+    }
+
     public TipoConta getTipoConta() {
         return tipoConta;
     }

@@ -1,21 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.fatec.view;
 
 import br.com.fatec.config.Config;
 import br.com.fatec.controller.LoginController;
 import br.com.fatec.model.Conta;
+import br.com.fatec.model.Usuario;
 import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
 
 
-/**
- *
- * @author henrique1
- */
 public class FRMLogin extends javax.swing.JFrame {
     LoginController controller = new LoginController();
     
@@ -128,8 +120,8 @@ public class FRMLogin extends javax.swing.JFrame {
             conta.setLogin(txtLogin.getText());
             conta.setSenha(txtSenha.getText());
             
-            boolean success = controller.logar(conta);
-            if (success){
+            Usuario user = controller.logar(conta);
+            if (user != null){
                 this.dispose();
                 FRMMenu menu = new FRMMenu();
                 menu.setVisible(true);
