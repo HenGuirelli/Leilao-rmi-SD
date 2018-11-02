@@ -50,8 +50,8 @@ public class LeilaoProvider extends UnicastRemoteObject implements ILeilaoDTO {
             }
             i++;
         }
-        leilao.getItens().remove(i);
-                
+        
+        leilao.getItens().remove(i);                
         item.setValorAtual(valor);
         item.setVencedor((Participante)usuario);
         leilao.addItem(item);
