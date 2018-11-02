@@ -9,18 +9,44 @@ public class Item implements java.io.Serializable {
     private Date inicio;
     private Date fim;
     private String senha;
+    private Participante vencedor;
+
+    private static int _id = 0;
+    
+    private int id;
+    
+    
 
     public Item(String descricao, float valorMinimo, String senha){
         this.descricao = descricao;
         this.valoMinimo = valorMinimo;
         this.valorAtual = valorMinimo;
         this.senha = senha;
+        
+        id = _id;
+        _id++;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public String getDescricao() {
         return descricao;
     }
 
+    public Participante getVencedor() {
+        return vencedor;
+    }
+
+    public void setVencedor(Participante vencedor) {
+        this.vencedor = vencedor;
+    }
+    
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }

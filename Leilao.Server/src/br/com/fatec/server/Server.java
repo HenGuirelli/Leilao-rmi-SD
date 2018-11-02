@@ -7,7 +7,7 @@ import java.rmi.registry.LocateRegistry;
 import br.com.fatec.DTO.ILoginDTO;
 import br.com.fatec.config.Config;
 import br.com.fatec.fake.Provider.ContaProvider;
-import br.com.fatec.fake.Provider.LeilaoDTO;
+import br.com.fatec.fake.Provider.LeilaoProvider;
 
 public class Server {
     
@@ -16,7 +16,7 @@ public class Server {
             System.out.println("server ativo...");
             
             ILoginDTO login = new ContaProvider();
-            ILeilaoDTO leilao = new LeilaoDTO();
+            ILeilaoDTO leilao = new LeilaoProvider();
             
             LocateRegistry.createRegistry(Config.PORT);
             

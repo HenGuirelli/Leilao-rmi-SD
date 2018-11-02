@@ -2,7 +2,10 @@ package br.com.fatec.controller;
 
 import br.com.fatec.DTO.ILeilaoDTO;
 import br.com.fatec.config.Config;
+import br.com.fatec.model.ExecutionContext;
 import br.com.fatec.model.Item;
+import br.com.fatec.model.Participante;
+import br.com.fatec.model.Usuario;
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,7 +31,7 @@ public class LeilaoController {
     
     public void inciciar() throws RemoteException{
         ILeilaoDTO dto = Conexao.getLeilaoDTO();
-        dto.inciciar();
+        dto.iniciar();
     }
     
     public List<Item> listar() throws RemoteException{
@@ -36,6 +39,10 @@ public class LeilaoController {
         return dto.listar();
     }
     
+    public void darLance(Item item, float lance) throws RemoteException{
+       ILeilaoDTO dto = Conexao.getLeilaoDTO();
+       dto.darLance(item, ExecutionContext.getUsuario(), lance);
+    }
     
     public void preencheTabelaAsync(javax.swing.JTable table){
         new Thread() {

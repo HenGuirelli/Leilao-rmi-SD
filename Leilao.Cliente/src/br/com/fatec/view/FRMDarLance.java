@@ -136,13 +136,13 @@ public class FRMDarLance extends javax.swing.JFrame {
             }
             
             
-            
+            controller.darLance(item, lance);
+            tblItens.clearSelection();
+            JOptionPane.showMessageDialog(this, "Lance feito");
             
         } catch (RemoteException ex) {
             JOptionPane.showMessageDialog(this, Config.Texts.Error.REMOTE_EXCEPTION);
         }
-        
-        
     }//GEN-LAST:event_btnDarLanceActionPerformed
 
     /**

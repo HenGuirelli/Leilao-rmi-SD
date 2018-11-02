@@ -13,7 +13,7 @@ class ProviderFactory {
     
     static ILeilaoDTO createLeilaoProvider() throws RemoteException {
         if (Config.USE_FAKE_PROVIDER)
-            return new br.com.fatec.fake.Provider.LeilaoDTO();
+            return new br.com.fatec.fake.Provider.LeilaoProvider();
         return null;
     }
 }

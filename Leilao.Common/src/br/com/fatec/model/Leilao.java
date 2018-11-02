@@ -6,7 +6,11 @@ import java.util.List;
 public class Leilao implements java.io.Serializable {
     private List<Item> itens = new ArrayList<>();
     private boolean aberto;
-
+    
+    public List<Item> getClone(){
+        return (ArrayList)((ArrayList) itens).clone();
+    }
+    
     public List<Item> getItens() {
         return itens;
     }
