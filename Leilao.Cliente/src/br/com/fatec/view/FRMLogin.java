@@ -5,11 +5,10 @@
  */
 package br.com.fatec.view;
 
+import br.com.fatec.config.Config;
 import br.com.fatec.controller.LoginController;
 import br.com.fatec.model.Conta;
 import java.rmi.RemoteException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -41,7 +40,7 @@ public class FRMLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtSenha = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnCriarConta = new javax.swing.JButton();
         btnLogar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,7 +69,12 @@ public class FRMLogin extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Senha");
 
-        jButton1.setText("Criar conta");
+        btnCriarConta.setText("Criar conta");
+        btnCriarConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriarContaActionPerformed(evt);
+            }
+        });
 
         btnLogar.setText("Logar");
         btnLogar.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +97,7 @@ public class FRMLogin extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCriarConta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLogar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -111,7 +115,7 @@ public class FRMLogin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCriarConta, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -130,11 +134,11 @@ public class FRMLogin extends javax.swing.JFrame {
                 FRMMenu menu = new FRMMenu();
                 menu.setVisible(true);
             }else{
-                JOptionPane.showMessageDialog(null, "Erro ao logar");
+                JOptionPane.showMessageDialog(null, Config.Texts.Error.LOGIN);
             }
         } catch (RemoteException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Erro ao conectar");
+            JOptionPane.showMessageDialog(null, Config.Texts.Error.REMOTE_EXCEPTION);
         }
         
     }//GEN-LAST:event_btnLogarActionPerformed
@@ -150,6 +154,12 @@ public class FRMLogin extends javax.swing.JFrame {
     private void txtSenhaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyReleased
          unlockLoginButton();
     }//GEN-LAST:event_txtSenhaKeyReleased
+
+    private void btnCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarContaActionPerformed
+        this.dispose();
+        FRMCriarConta frame = new FRMCriarConta();
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnCriarContaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,8 +197,8 @@ public class FRMLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCriarConta;
     private javax.swing.JButton btnLogar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtLogin;

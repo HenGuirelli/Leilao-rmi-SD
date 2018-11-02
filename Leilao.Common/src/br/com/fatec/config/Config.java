@@ -11,4 +11,18 @@ public class Config {
     public static final String ENDPOINT_BASE = "rmi://" + REGISTRY + ":" + PORT;
     
     public static final String ENDPOINT_LOGIN = ENDPOINT_BASE + "/Login";
+    
+    public class Texts {
+        
+        public class Error {
+            public static final String REMOTE_EXCEPTION = "Erro ao conectar";
+            public static final String CREATE_ACCOUNT = "Conta já cadastrada";
+            public static final String LOGIN = "Usuario ou senha incorretos";
+        }
+        
+        public class Success {
+            public static final String CREATE_ACCOUNT = "Conta criada";     
+        }
+        
+    }
 }
