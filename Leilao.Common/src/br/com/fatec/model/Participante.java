@@ -1,6 +1,6 @@
 package br.com.fatec.model;
 
-public class Participante extends Usuario {
+public class Participante extends Usuario implements java.io.Serializable {
    private int totalLances;
    private int totalItensGanhos;
 

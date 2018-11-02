@@ -2,7 +2,7 @@ package br.com.fatec.model;
 
 import java.util.Date;
 
-public class Item {
+public class Item implements java.io.Serializable {
     private String descricao;
     private float valoMinimo;
     private float valorAtual;

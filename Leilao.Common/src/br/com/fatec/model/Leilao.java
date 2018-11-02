@@ -3,9 +3,13 @@ package br.com.fatec.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Leilao {
+public class Leilao implements java.io.Serializable {
     private List<Item> itens = new ArrayList<>();
     private boolean aberto;
+
+    public List<Item> getItens() {
+        return itens;
+    }
 
     public void addItem(Item item){
         itens.add(item);

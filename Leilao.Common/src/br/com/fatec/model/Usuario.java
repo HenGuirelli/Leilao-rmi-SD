@@ -1,6 +1,6 @@
 package br.com.fatec.model;
 
-public class Usuario {
+public class Usuario implements java.io.Serializable {
     private Conta conta;
 
     public Conta getConta() {
