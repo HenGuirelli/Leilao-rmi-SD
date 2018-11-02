@@ -11,6 +11,7 @@ public class Config {
     public static final String ENDPOINT_BASE = "rmi://" + REGISTRY + ":" + PORT;
     
     public static final String ENDPOINT_LOGIN = ENDPOINT_BASE + "/Login";
+    public static final String ENDPOINT_LEILAO = ENDPOINT_BASE + "/Leilao";
     
     public class Texts {
         
@@ -21,7 +22,8 @@ public class Config {
         }
         
         public class Success {
-            public static final String CREATE_ACCOUNT = "Conta criada";     
+            public static final String CREATE_ACCOUNT = "Conta criada";
+            public static final String REGISTER_ITEM = "Item em leilão";  
         }
         
     }

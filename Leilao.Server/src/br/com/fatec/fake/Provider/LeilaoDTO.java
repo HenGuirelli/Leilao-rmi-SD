@@ -4,10 +4,15 @@ import br.com.fatec.DTO.ILeilaoDTO;
 import br.com.fatec.model.Item;
 import br.com.fatec.model.Leilao;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
-public class LeilaoDTO implements ILeilaoDTO {
+public class LeilaoDTO extends UnicastRemoteObject implements ILeilaoDTO {
     private Leilao leilao = new Leilao();
+    
+    public LeilaoDTO() throws RemoteException {
+        super();
+    }
     
     @Override
     public void cadastrar(Item item) throws RemoteException {

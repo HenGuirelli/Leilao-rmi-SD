@@ -6,8 +6,6 @@ import br.com.fatec.model.Conta;
 import java.rmi.RemoteException;
 
 public class LoginController {
-    public LoginController(){
-    }
     
     public boolean logar(Conta conta) throws RemoteException{
         ILoginDTO login = Conexao.getLoginDTO();
@@ -17,5 +15,6 @@ public class LoginController {
     public void criarConta(Conta conta) throws ContaExisteException, RemoteException{
         ILoginDTO login = Conexao.getLoginDTO();
         login.save(conta);
-    }    
+    }
+    
 }
