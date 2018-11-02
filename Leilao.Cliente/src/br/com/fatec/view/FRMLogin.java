@@ -7,6 +7,9 @@ package br.com.fatec.view;
 
 import br.com.fatec.controller.LoginController;
 import br.com.fatec.model.Conta;
+import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -116,17 +119,22 @@ public class FRMLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
-        Conta conta = new Conta();
-        conta.setLogin(txtLogin.getText());
-        conta.setSenha(txtSenha.getText());
-        
-        boolean success = controller.logar(conta);
-        if (success){
-            this.dispose();
-            FRMMenu menu = new FRMMenu();
-            menu.setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(null, "Erro ao logar");
+        try {
+            Conta conta = new Conta();
+            conta.setLogin(txtLogin.getText());
+            conta.setSenha(txtSenha.getText());
+            
+            boolean success = controller.logar(conta);
+            if (success){
+                this.dispose();
+                FRMMenu menu = new FRMMenu();
+                menu.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "Erro ao logar");
+            }
+        } catch (RemoteException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao conectar");
         }
         
     }//GEN-LAST:event_btnLogarActionPerformed

@@ -1,6 +1,9 @@
 package br.com.fatec.model;
 
-public class Conta {
+import java.io.Serializable;
+
+public class Conta implements Serializable {
+    
     private String login;
     private String senha;
 
