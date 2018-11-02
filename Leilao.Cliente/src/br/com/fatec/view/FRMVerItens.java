@@ -5,17 +5,39 @@
  */
 package br.com.fatec.view;
 
+import br.com.fatec.config.Config;
+import br.com.fatec.controller.LeilaoController;
+import br.com.fatec.model.Item;
+import java.rmi.RemoteException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author henrique1
  */
 public class FRMVerItens extends javax.swing.JFrame {
-
+    LeilaoController controller = new LeilaoController();
     /**
      * Creates new form FRMVerItens
      */
     public FRMVerItens() {
         initComponents();
+        
+        List<Item> itens = null;
+        try {
+            itens = controller.listar();
+        } catch (RemoteException ex) {
+            JOptionPane.showMessageDialog(null, Config.Texts.Error.REMOTE_EXCEPTION);
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblItens.getModel();
+        
+        for(Item item : itens){
+            String [] row = new String[] {item.getDescricao(), item.getValoMinimo() + "", item.getValorAtual() + ""};
+            model.addRow(row);
+        }
     }
 
     /**
@@ -29,25 +51,22 @@ public class FRMVerItens extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblItens = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Itens em leilão");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblItens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Produto", "Valor Inicial", "Maior lance"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblItens);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,6 +130,6 @@ public class FRMVerItens extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblItens;
     // End of variables declaration//GEN-END:variables
 }
