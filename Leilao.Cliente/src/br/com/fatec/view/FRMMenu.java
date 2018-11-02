@@ -1,33 +1,14 @@
 package br.com.fatec.view;
 
-import br.com.fatec.config.Config;
 import br.com.fatec.controller.LeilaoController;
-import br.com.fatec.model.Item;
-import java.rmi.RemoteException;
-import java.util.List;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 public class FRMMenu extends javax.swing.JFrame {
     LeilaoController controller = new LeilaoController();
-
+        
     public FRMMenu() {
         initComponents();
         
-        List<Item> itens = null;
-        try {
-            itens = controller.listar();
-        } catch (RemoteException ex) {
-            JOptionPane.showMessageDialog(null, Config.Texts.Error.REMOTE_EXCEPTION);
-            return;
-        }
-        
-        DefaultTableModel model = (DefaultTableModel) tblItens.getModel();
-        
-        for(Item item : itens){
-            String [] row = new String[] {item.getDescricao(), item.getValoMinimo() + "", item.getValorAtual() + ""};
-            model.addRow(row);
-        }
+        controller.preencheTabelaAsync(tblItens);
     }
 
     @SuppressWarnings("unchecked")
@@ -134,8 +115,7 @@ public class FRMMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastrarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarItemActionPerformed
-
-       
+ 
     }//GEN-LAST:event_cadastrarItemActionPerformed
 
     private void darLanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_darLanceActionPerformed

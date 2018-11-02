@@ -29,20 +29,7 @@ public class FRMDarLance extends javax.swing.JFrame {
         initComponents();
         btnDarLance.setEnabled(false);
         
-        List<Item> itens = null;
-        try {
-            itens = controller.listar();
-        } catch (RemoteException ex) {
-            JOptionPane.showMessageDialog(null, Config.Texts.Error.REMOTE_EXCEPTION);
-            return;
-        }
-        
-        DefaultTableModel model = (DefaultTableModel) tblItens.getModel();
-        
-        for(Item item : itens){
-            String [] row = new String[] {item.getDescricao(), item.getValoMinimo() + "", item.getValorAtual() + ""};
-            model.addRow(row);
-        }
+        controller.preencheTabelaAsync(tblItens);
     }
 
     @SuppressWarnings("unchecked")
@@ -133,8 +120,11 @@ public class FRMDarLance extends javax.swing.JFrame {
     private void btnDarLanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarLanceActionPerformed
        
         try {
+            //item selecionado
             Item item = controller.listar().get(tblItens.getSelectedRow());
-            System.out.println(item.getDescricao());
+            
+            
+            
         } catch (RemoteException ex) {
             JOptionPane.showMessageDialog(this, Config.Texts.Error.REMOTE_EXCEPTION);
         }
