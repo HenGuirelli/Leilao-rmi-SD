@@ -13,6 +13,7 @@ public class Item implements java.io.Serializable {
     public Item(String descricao, float valorMinimo, String senha){
         this.descricao = descricao;
         this.valoMinimo = valorMinimo;
+        this.valorAtual = valorMinimo;
         this.senha = senha;
     }
     

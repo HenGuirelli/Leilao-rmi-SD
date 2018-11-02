@@ -119,9 +119,22 @@ public class FRMDarLance extends javax.swing.JFrame {
 
     private void btnDarLanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarLanceActionPerformed
        
+        float lance = 0;
         try {
             //item selecionado
             Item item = controller.listar().get(tblItens.getSelectedRow());
+            
+            try{
+                lance = Float.parseFloat(txtLance.getText());
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this, "Valor do lance inválido");
+            }
+            
+            if (lance <= item.getValorAtual()){
+                JOptionPane.showMessageDialog(this, "Valor do lance deve ser maior que valor atual");
+                return;
+            }
+            
             
             
             
