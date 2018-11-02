@@ -1,9 +1,10 @@
 package br.com.fatec.interfaces;
 
-import br.com.fatec.fake.Provider.ContaProvider;
+import br.com.fatec.exceptions.ContaExisteException;
+import br.com.fatec.model.Conta;
 
 public interface IContaProvider {
-   public void save(ContaProvider conta);
-   public boolean signIn(ContaProvider conta);
-   public void update(ContaProvider conta);
+   public void save(Conta conta) throws ContaExisteException;
+   public boolean signIn(Conta conta);
+   public void update(Conta conta);
 }
