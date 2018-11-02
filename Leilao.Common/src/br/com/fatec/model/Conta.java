@@ -1,11 +1,17 @@
 package br.com.fatec.model;
 
+import br.com.fatec.enums.TipoConta;
 import java.io.Serializable;
 
 public class Conta implements Serializable {
     
     private String login;
     private String senha;
+    private TipoConta tipoConta;
+
+    public TipoConta getTipoConta() {
+        return tipoConta;
+    }
 
     public String getLogin() {
         return login;

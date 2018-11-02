@@ -19,6 +19,7 @@ public class ContaProvider extends UnicastRemoteObject implements ILoginDTO{
 
     @Override
     public boolean signIn(Conta conta) {
+        // TODO: mudar retorno pra TipoConta
         return true;
     }
 
