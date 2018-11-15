@@ -6,5 +6,7 @@
 /Leilao.Provider/nbproject/private/
 /Leilao.Server/build/
 /Leilao.Common/dist/
-/Leilao.Server/javamail-1.4.5/
-/Leilao.Server/mysql-connector-java-5.1.47/
+/Leilao.Server/javamail-1.4.5/*
+!/Leilao.Server/javamail-1.4.5/*.jar
+/Leilao.Server/mysql-connector-java-5.1.47/*
+!/Leilao.Server/mysql-connector-java-5.1.47/*.jar
