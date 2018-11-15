@@ -126,7 +126,7 @@ public class FRMLogin extends javax.swing.JFrame {
                 FRMMenu menu = new FRMMenu();
                 menu.setVisible(true);
             }else{
-                JOptionPane.showMessageDialog(null, Config.Texts.Error.LOGIN);
+                JOptionPane.showMessageDialog(null, "Login ou senha inválidos");
             }
         } catch (RemoteException ex) {
             ex.printStackTrace();

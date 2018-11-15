@@ -1,5 +1,6 @@
-package br.com.fatec.fake.Provider;
+package br.com.fatec.provider;
 
+import br.com.fatec.DAO.LeilaoDAO;
 import br.com.fatec.DTO.ILeilaoDTO;
 import br.com.fatec.model.Item;
 import br.com.fatec.model.Leilao;
@@ -9,41 +10,30 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 public class LeilaoProvider implements ILeilaoDTO {
-    private Leilao leilao = new Leilao();    
+    private Leilao leilao = new Leilao();
+    private LeilaoDAO dao = new LeilaoDAO();
     
     public void cadastrar(Item item) throws RemoteException {
-        leilao.addItem(item);
+        //dao.insert(leilao);
     }
 
     public void remover(Item item) throws RemoteException {
-        leilao.removeItem(item);
+        //dao.delete(item);
     }
 
     public void encerrar(Participante vencedor, Item item) throws RemoteException {
-        //leilao.setAberto(false);
-        leilao.getItens().remove(item);
+        
     }
 
     public void iniciar() throws RemoteException {
-        leilao.setAberto(true);
+        
     }
 
     public List<Item> listar() throws RemoteException {
-        return leilao.getClone();
+        return dao.listar();
     }
 
     public void darLance(Item item, Usuario usuario, float valor) throws RemoteException {        
-        int i = 0;
-        for (Item _item : leilao.getItens()){
-            if (_item.getId() == item.getId()){
-                break;
-            }
-            i++;
-        }
         
-        leilao.getItens().remove(i);                
-        item.setValorAtual(valor);
-        item.setVencedor((Participante)usuario);
-        leilao.addItem(item);
-    }    
+    }
 }

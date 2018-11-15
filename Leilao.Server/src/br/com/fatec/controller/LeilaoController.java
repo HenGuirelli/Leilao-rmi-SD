@@ -29,8 +29,8 @@ public class LeilaoController extends UnicastRemoteObject implements ILeilaoDTO 
 
     @Override
     public void encerrar(Participante vencedor, Item item) throws RemoteException {
-        Email.enviar(vencedor, item);        
-        provider.encerrar(vencedor, item);
+        //Email.enviar(vencedor, item);
+        provider.remover(item);
     }
 
     @Override

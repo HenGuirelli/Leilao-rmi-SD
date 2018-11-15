@@ -8,12 +8,12 @@ class ProviderFactory {
     static ILoginDTO createContaProvider() throws RemoteException{
         if (Config.USE_FAKE_PROVIDER)
             return new br.com.fatec.fake.Provider.ContaProvider();
-        return null;
+        return new br.com.fatec.provider.ContaProvider();
     }
     
     static ILeilaoDTO createLeilaoProvider() throws RemoteException {
         if (Config.USE_FAKE_PROVIDER)
             return new br.com.fatec.fake.Provider.LeilaoProvider();
-        return null;
+        return null;//new br.com.fatec.provider.LeilaoProvider();
     }
 }
