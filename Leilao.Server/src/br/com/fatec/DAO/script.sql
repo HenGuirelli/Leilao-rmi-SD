@@ -16,14 +16,13 @@ create table if not exists usuario (
 
 create table if not exists item (
     id int auto_increment not null,
-    vendedor int not null,
+    vendedor int,
     nome varchar(30) not null,
     descricao varchar(180),
     valor_inicial decimal(3, 2) not null,
     valor_atual decimal(3, 2) not null,
     senha varchar(30) not null,
-    primary key (id),
-    foreign key (vendedor) references usuario(id)
+    primary key (id)
 );
 
 

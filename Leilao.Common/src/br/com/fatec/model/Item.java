@@ -2,8 +2,9 @@ package br.com.fatec.model;
 
 import java.util.Date;
 
-public class Item implements java.io.Serializable {
+public class Item extends RegistroBanco implements java.io.Serializable {
     private String descricao;
+    private String nome;
     private float valoMinimo;
     private float valorAtual;
     private Date inicio;
@@ -11,28 +12,11 @@ public class Item implements java.io.Serializable {
     private String senha;
     private Participante vencedor;
 
-    private static int _id = 0;
-    
-    private int id;
-    
-    
-
     public Item(String descricao, float valorMinimo, String senha){
         this.descricao = descricao;
         this.valoMinimo = valorMinimo;
         this.valorAtual = valorMinimo;
         this.senha = senha;
-        
-        id = _id;
-        _id++;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
     
     public String getDescricao() {
@@ -90,4 +74,14 @@ public class Item implements java.io.Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    
 }

@@ -57,10 +57,12 @@ public class UsuarioDAO implements DAO<Usuario>{
                 participante.setNome(rs.getString("nome"));
                 participante.setTotalItensGanhos(rs.getInt("total_itens_ganhos"));
                 participante.setTotalLances(rs.getInt("total_lances"));
+                participante.setId(rs.getInt("id"));
             }else{
                 conta.setTipoConta(TipoConta.LEILOEIRO);
                 leiloeiro = new Leiloeiro();
                 leiloeiro.setNome(rs.getString("nome"));
+                leiloeiro.setId(rs.getInt("id"));
             }
         }else{
             throw new ContaInexistenteException();
