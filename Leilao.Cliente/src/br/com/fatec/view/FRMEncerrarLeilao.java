@@ -2,6 +2,9 @@ package br.com.fatec.view;
 
 import br.com.fatec.controller.LeilaoController;
 import br.com.fatec.model.Item;
+import br.com.fatec.model.Participante;
+import java.rmi.RemoteException;
+import javax.swing.JOptionPane;
 
 public class FRMEncerrarLeilao extends javax.swing.JFrame {
     private LeilaoController controller = new LeilaoController();
@@ -49,6 +52,11 @@ public class FRMEncerrarLeilao extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblItens);
 
         btnEncerrar.setText("Encerrar");
+        btnEncerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEncerrarActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -141,6 +149,17 @@ public class FRMEncerrarLeilao extends javax.swing.JFrame {
            
         }
     }//GEN-LAST:event_tblItensMouseClicked
+
+    private void btnEncerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEncerrarActionPerformed
+        try {
+            Item item = controller.listar().get(tblItens.getSelectedRow());
+            controller.encerrar(item.getVencedor(), item);
+            JOptionPane.showMessageDialog(null, "Leilão cancelado");
+        } catch (RemoteException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao encerrar leilao: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnEncerrarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEncerrar;

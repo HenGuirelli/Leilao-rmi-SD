@@ -118,7 +118,9 @@ public class FRMDarLance extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLanceKeyReleased
 
     private void btnDarLanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarLanceActionPerformed
-       
+        if (tblItens.getSelectedRow() == -1) { 
+            JOptionPane.showMessageDialog(this, "Selecione uma linha");
+        }
         float lance = 0;
         try {
             //item selecionado

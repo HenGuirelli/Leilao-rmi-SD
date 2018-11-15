@@ -27,8 +27,10 @@ public class LeilaoProvider extends UnicastRemoteObject implements ILeilaoDTO {
     }
 
     @Override
-    public void encerrar() throws RemoteException {
-        leilao.setAberto(false);
+    public void encerrar(Participante vencedor, Item item) throws RemoteException {
+        //leilao.setAberto(false);
+        System.out.println("encerrar");
+        leilao.getItens().remove(item);
     }
 
     @Override
