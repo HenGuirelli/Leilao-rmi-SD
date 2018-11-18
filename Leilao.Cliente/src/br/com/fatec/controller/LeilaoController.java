@@ -52,6 +52,10 @@ public class LeilaoController {
                     List<Item> itens = null;
                     try {
                         itens = listar();
+                        System.out.println("-----------------");
+                        for(Item item: itens){
+                            System.out.println(item.getVencedor());
+                        }
                     } catch (RemoteException | ClassNotFoundException | SQLException ex) {
                         ex.printStackTrace();
                     }

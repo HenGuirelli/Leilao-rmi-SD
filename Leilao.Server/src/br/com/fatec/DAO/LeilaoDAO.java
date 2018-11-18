@@ -103,15 +103,14 @@ public class LeilaoDAO implements DAO<Item>, Listavel<Item>{
            item.setDescricao(rs.getString("descricao"));
            item.setId(rs.getInt("id"));
            if (rs.getString("vencedor") != null){
-               Usuario usuario = new Usuario();
-               Conta conta = new Conta();
-               conta.setLogin(rs.getString("vencedor"));               
-               usuario.setConta(conta);
                try{
-                   Participante participante = (Participante)new UsuarioDAO().select(usuario);
+                   Participante participante = 
+                           (Participante)new UsuarioDAO().selectByLogin(rs.getString("vencedor"));
                    System.out.println(participante + "aaaaaaa");
                    item.setVencedor(participante);
-               }catch (ContaInexistenteException ex) {}
+               }catch (ContaInexistenteException ex) {
+                   ex.printStackTrace();
+               }
            }
            resp.add(item);
         }

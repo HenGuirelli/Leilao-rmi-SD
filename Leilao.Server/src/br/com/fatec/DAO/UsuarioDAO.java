@@ -29,7 +29,39 @@ public class UsuarioDAO implements DAO<Usuario>{
                 + "login = '"+conta.getLogin()+"', senha = '"+conta.getSenha()+"' "
                 + "WHERE login = '"+conta.getLogin()+"'");
     }
+    
+    public Usuario selectByLogin(String login) throws ClassNotFoundException, SQLException, ContaInexistenteException {
+        Usuario usuario = new Usuario();
+        Conta conta = new Conta();
+        Participante participante;
+        Leiloeiro leiloeiro;
+        String sql = 
+                "SELECT * FROM usuario WHERE login = '"+login+"'";  
 
+        Banco.conectar();
+        PreparedStatement pst = Banco.getConexao().prepareStatement(sql);
+        rs = pst.executeQuery();
+        
+        if (rs.next()){
+            if (rs.getString("tipo_conta").equals("participante")){            
+                conta.setTipoConta(TipoConta.PARTICIPANTE);
+                participante = new Participante();
+                participante.setNome(rs.getString("nome"));
+                participante.setTotalItensGanhos(rs.getInt("total_itens_ganhos"));
+                participante.setTotalLances(rs.getInt("total_lances"));
+                usuario = participante;
+            }else{
+                conta.setTipoConta(TipoConta.LEILOEIRO);
+                leiloeiro = new Leiloeiro();
+                leiloeiro.setNome(rs.getString("nome"));
+                usuario =  leiloeiro;
+            }
+        }
+        usuario.setConta(conta);
+        Banco.desconectar();
+        return usuario;
+    }
+    
     @Override
     public Usuario select(Usuario obj) throws ClassNotFoundException, SQLException, ContaInexistenteException  {
         Usuario usuario = new Usuario();
