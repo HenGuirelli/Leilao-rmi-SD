@@ -5,9 +5,11 @@ import br.com.fatec.enums.TipoConta;
 import br.com.fatec.exceptions.ContaInexistenteException;
 import br.com.fatec.model.Conta;
 import br.com.fatec.model.Item;
+import br.com.fatec.model.Participante;
 import br.com.fatec.model.Usuario;
 import java.sql.SQLException;
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,10 +29,9 @@ public class TesteDAO {
             
             dao.delete(usuario);
             dao.insert(usuario);
-            usuario.getConta().setLogin("login@email.com");
+            usuario.setNome("Rodolfo");
             dao.update(usuario);
             
-            usuario.setId(0);
             usuario = dao.select(usuario);
             System.out.println("-------------Usuario-------------");
             System.out.println("nome: " + usuario.getNome());
@@ -39,14 +40,18 @@ public class TesteDAO {
             
             /* Teste item */
             LeilaoDAO dao2 = new LeilaoDAO();
-            Item item = new Item("descrição 1", 10, "senha123");
+            Item item = new Item("nome 1", 10, "senha123");
             dao2.delete(item);            
             dao2.insert(item);
-            
-            item = dao2.select(item);
-            System.out.println("-------------Item-------------");
-            System.out.println("nome: " + item.getNome());
-            System.out.println("Descrição: " + item.getDescricao());
+            item.setVencedor((Participante)usuario);
+            dao2.update(item);
+            List<Item> itens = dao2.listar();
+            for (Item _item : itens){
+                System.out.println("-------------Item-------------");
+                System.out.println("nome: " + _item.getNome());
+                System.out.println("Descrição: " + _item.getDescricao());
+                dao2.delete(_item);
+            }
             
         } catch (ClassNotFoundException | SQLException | ContaInexistenteException ex) {
             ex.printStackTrace();

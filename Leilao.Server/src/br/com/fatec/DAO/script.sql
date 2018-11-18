@@ -15,11 +15,11 @@ create table if not exists usuario (
 
 create table if not exists item (
     id int auto_increment not null,
-    vendedor varchar(30),
+    vencedor varchar(30),
     nome varchar(30) not null,
     descricao varchar(180),
-    valor_inicial decimal(3, 2) not null,
-    valor_atual decimal(3, 2) not null,
+    valor_inicial double not null,
+    valor_atual double not null,
     senha varchar(30) not null,
     em_leilao boolean default true,
     primary key (id)

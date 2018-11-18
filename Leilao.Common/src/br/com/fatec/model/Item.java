@@ -12,8 +12,8 @@ public class Item extends RegistroBanco implements java.io.Serializable {
     private String senha;
     private Participante vencedor;
 
-    public Item(String descricao, float valorMinimo, String senha){
-        this.descricao = descricao;
+    public Item(String nome, float valorMinimo, String senha){
+        this.nome = nome;
         this.valoMinimo = valorMinimo;
         this.valorAtual = valorMinimo;
         this.senha = senha;

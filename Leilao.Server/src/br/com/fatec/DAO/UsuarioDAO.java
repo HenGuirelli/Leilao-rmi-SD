@@ -39,7 +39,7 @@ public class UsuarioDAO implements DAO<Usuario>{
         Conta conta = obj.getConta();
         String sql = 
                 "SELECT * FROM usuario WHERE login = '"+conta.getLogin()+"' AND senha = '"+conta.getSenha()+"'";        
-        
+
         Banco.conectar();
         PreparedStatement pst = Banco.getConexao().prepareStatement(sql);
         rs = pst.executeQuery();

@@ -1,6 +1,6 @@
 package br.com.fatec.model;
 
-public class Usuario extends RegistroBanco implements java.io.Serializable {
+public class Usuario implements java.io.Serializable {
     private Conta conta;
     private String nome;
 
