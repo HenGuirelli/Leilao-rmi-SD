@@ -8,9 +8,6 @@ package br.com.fatec.view;
 import br.com.fatec.config.Config;
 import br.com.fatec.controller.LeilaoController;
 import br.com.fatec.model.Item;
-import java.rmi.RemoteException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +21,7 @@ public class FRMCadastrarItem extends javax.swing.JFrame {
     public FRMCadastrarItem() {
         initComponents();
         btnEnviar.setEnabled(false);
+        setLocationRelativeTo(null);
     }    
 
     /**

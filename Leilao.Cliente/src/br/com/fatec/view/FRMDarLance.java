@@ -10,11 +10,7 @@ import br.com.fatec.controller.LeilaoController;
 import br.com.fatec.model.Item;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -31,6 +27,7 @@ public class FRMDarLance extends javax.swing.JFrame {
         btnDarLance.setEnabled(false);
         
         controller.preencheTabelaAsync(tblItens);
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -120,7 +117,7 @@ public class FRMDarLance extends javax.swing.JFrame {
 
     private void btnDarLanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarLanceActionPerformed
         if (tblItens.getSelectedRow() == -1) { 
-            JOptionPane.showMessageDialog(this, "Selecione uma linha");
+            JOptionPane.showMessageDialog(this, "Selecione um item");
         }
         float lance = 0;
         try {

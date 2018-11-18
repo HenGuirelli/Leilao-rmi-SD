@@ -9,6 +9,7 @@ public class FRMMenu extends javax.swing.JFrame {
         initComponents();
         
         controller.preencheTabelaAsync(tblItens);
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

@@ -2,11 +2,8 @@ package br.com.fatec.view;
 
 import br.com.fatec.controller.LeilaoController;
 import br.com.fatec.model.Item;
-import br.com.fatec.model.Participante;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class FRMEncerrarLeilao extends javax.swing.JFrame {
@@ -17,6 +14,7 @@ public class FRMEncerrarLeilao extends javax.swing.JFrame {
         initComponents();
         
         controller.preencheTabelaAsync(tblItens);
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

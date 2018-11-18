@@ -26,7 +26,7 @@ public class FRMVerItens extends javax.swing.JFrame {
      */
     public FRMVerItens() {
         initComponents();
-        
+        setLocationRelativeTo(null);
         List<Item> itens = null;
         try {
             try {

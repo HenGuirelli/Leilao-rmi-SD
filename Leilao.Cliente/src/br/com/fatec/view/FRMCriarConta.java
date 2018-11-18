@@ -24,6 +24,7 @@ public class FRMCriarConta extends javax.swing.JFrame {
     public FRMCriarConta() {
         initComponents();
         btnCriarConta.setEnabled(false);
+        setLocationRelativeTo(null);
     }
 
     /**
