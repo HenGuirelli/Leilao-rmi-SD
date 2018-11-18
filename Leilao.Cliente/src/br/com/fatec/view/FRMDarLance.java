@@ -126,7 +126,7 @@ public class FRMDarLance extends javax.swing.JFrame {
         try {
             //item selecionado
             Item item = controller.listar().get(tblItens.getSelectedRow());
-            
+            System.out.println(item.getId());
             try{
                 lance = Float.parseFloat(txtLance.getText());
             }catch(Exception e){

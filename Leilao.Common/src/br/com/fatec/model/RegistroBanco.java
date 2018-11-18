@@ -1,6 +1,6 @@
 package br.com.fatec.model;
 
-public class RegistroBanco {
+public class RegistroBanco implements java.io.Serializable {
     private int id;
 
     public int getId() {

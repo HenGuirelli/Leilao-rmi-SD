@@ -2,7 +2,7 @@ package br.com.fatec.model;
 
 import java.util.Date;
 
-public class Item extends RegistroBanco implements java.io.Serializable {
+public class Item extends RegistroBanco {
     private String descricao;
     private String nome;
     private float valoMinimo;

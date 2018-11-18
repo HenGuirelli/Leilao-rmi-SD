@@ -50,9 +50,9 @@ public class TesteDAO {
                 System.out.println("-------------Item-------------");
                 System.out.println("nome: " + _item.getNome());
                 System.out.println("Descrição: " + _item.getDescricao());
+                System.out.println("id: " + _item.getId());
                 dao2.delete(_item);
             }
-            
         } catch (ClassNotFoundException | SQLException | ContaInexistenteException ex) {
             ex.printStackTrace();
             System.err.println(ex.getMessage());

@@ -53,7 +53,7 @@ public class LeilaoController {
                     try {
                         itens = listar();
                     } catch (RemoteException | ClassNotFoundException | SQLException ex) {
-                        
+                        ex.printStackTrace();
                     }
 
                     DefaultTableModel model = (DefaultTableModel) table.getModel();

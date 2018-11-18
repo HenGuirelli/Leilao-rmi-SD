@@ -47,7 +47,9 @@ public class LeilaoController extends UnicastRemoteObject implements ILeilaoDTO 
 
     @Override
     public void darLance(Item item, Usuario usuario, float valor) throws RemoteException, ClassNotFoundException, SQLException {
+        System.out.println("lance dado");
         item.setVencedor((Participante) usuario);
+        item.setValorAtual(valor);
         provider.atualizar(item);
     }
 }

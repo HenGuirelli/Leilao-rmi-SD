@@ -146,10 +146,11 @@ public class FRMEncerrarLeilao extends javax.swing.JFrame {
         lblEmail.setText("");
         try {
             item = controller.listar().get(tblItens.getSelectedRow());
+            System.out.println(item.getVencedor());
             lblSenha.setText(item.getSenha());
             lblEmail.setText(item.getVencedor().getConta().getLogin());
         } catch (Exception ex) {
-           
+           ex.printStackTrace();
         }
     }//GEN-LAST:event_tblItensMouseClicked
 

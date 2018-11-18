@@ -45,6 +45,7 @@ public class LeilaoDAO implements DAO<Item>, Listavel<Item>{
                 + "valor_inicial = "+obj.getValoMinimo()+", senha = '"+obj.getSenha()+"', "
                 + "vencedor = '"+obj.getVencedor().getConta().getLogin()+"'"
                 + "WHERE id = " + obj.getId();
+        System.out.println(sql);
         Banco.executeUpdate(sql);
     }
 
@@ -104,10 +105,12 @@ public class LeilaoDAO implements DAO<Item>, Listavel<Item>{
            if (rs.getString("vencedor") != null){
                Usuario usuario = new Usuario();
                Conta conta = new Conta();
-               conta.setLogin(rs.getString("vencedor"));
+               conta.setLogin(rs.getString("vencedor"));               
                usuario.setConta(conta);
                try{
-                    item.setVencedor((Participante)new UsuarioDAO().select(usuario));
+                   Participante participante = (Participante)new UsuarioDAO().select(usuario);
+                   System.out.println(participante + "aaaaaaa");
+                   item.setVencedor(participante);
                }catch (ContaInexistenteException ex) {}
            }
            resp.add(item);
