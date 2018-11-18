@@ -43,6 +43,7 @@ public class UsuarioDAO implements DAO<Usuario>{
         rs = pst.executeQuery();
         
         if (rs.next()){
+            conta.setLogin(rs.getString("login"));
             if (rs.getString("tipo_conta").equals("participante")){            
                 conta.setTipoConta(TipoConta.PARTICIPANTE);
                 participante = new Participante();

@@ -149,6 +149,8 @@ public class FRMEncerrarLeilao extends javax.swing.JFrame {
             System.out.println(item.getVencedor());
             lblSenha.setText(item.getSenha());
             lblEmail.setText(item.getVencedor().getConta().getLogin());
+            System.out.println(item.getVencedor().getConta());
+            System.out.println(item.getVencedor().getConta().getLogin());
         } catch (Exception ex) {
            ex.printStackTrace();
         }

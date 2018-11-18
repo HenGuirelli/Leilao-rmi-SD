@@ -1,19 +1,18 @@
 package br.com.fatec.testes;
 
 import br.com.fatec.DAO.*;
-import br.com.fatec.enums.TipoConta;
 import br.com.fatec.exceptions.ContaInexistenteException;
 import br.com.fatec.model.Conta;
 import br.com.fatec.model.Item;
 import br.com.fatec.model.Participante;
 import br.com.fatec.model.Usuario;
 import java.sql.SQLException;
-import java.text.MessageFormat;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class TesteDAO {
+    /**Classe de testes, rodando esse programa sem dar erro é suficiente
+     * para todo o sistema funcionar.
+     */
     public static void main(String[] args){
         try {
             /* Teste Usuario */
@@ -52,6 +51,7 @@ public class TesteDAO {
                 System.out.println("Descrição: " + _item.getDescricao());
                 System.out.println("id: " + _item.getId());
                 System.out.println("vencedor: " + _item.getVencedor());
+                System.out.println("conta: " + _item.getVencedor().getConta().getLogin());
                 dao2.delete(_item);
             }
         } catch (ClassNotFoundException | SQLException | ContaInexistenteException ex) {
