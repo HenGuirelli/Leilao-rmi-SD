@@ -1,10 +1,8 @@
 package br.com.fatec.DAO;
 
-import br.com.fatec.enums.TipoConta;
 import br.com.fatec.exceptions.ContaInexistenteException;
 import br.com.fatec.model.Conta;
 import br.com.fatec.model.Item;
-import br.com.fatec.model.Leiloeiro;
 import br.com.fatec.model.Participante;
 import br.com.fatec.model.Usuario;
 import java.sql.PreparedStatement;
@@ -20,50 +18,51 @@ public class LeilaoDAO implements DAO<Item>, Listavel<Item>{
     @Override
     public void insert(Item obj) throws ClassNotFoundException, SQLException {
         String sql = "insert into item (nome, descricao, valor_atual, valor_inicial, senha) " +
-                     "values (?, ?, ?, ?, ?)";
+                     "values ('"+obj.getNome()+"', '"+obj.getDescricao()+"', "
+                + obj.getValorAtual()+", "+obj.getValoMinimo()+", '"+obj.getSenha()+"')";
         
-        Banco.conectar();
-        
-        pst = Banco.getConexao().prepareStatement(sql);
-        pst.setString(1, obj.getNome());
-        pst.setString(2, obj.getDescricao());
-        pst.setFloat(3, obj.getValorAtual());
-        pst.setFloat(4, obj.getValoMinimo());
-        pst.setString(5, obj.getSenha());
-        
-        pst.executeUpdate();
-        Banco.desconectar();
+       Banco.executeUpdate(sql);
     }
 
     @Override
     public void update(Item obj) throws ClassNotFoundException, SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "UPDATE usuario SET nome = '"+obj.getNome()+"', "
+                + "descricao = '"+obj.getDescricao()+"', valor_atual = "+obj.getValorAtual()+", "
+                + "valor_inicial = "+obj.getValoMinimo()+", senha = '"+obj.getSenha()+"'";
     }
 
     @Override
     public Item select(Item obj) throws ClassNotFoundException, SQLException, ContaInexistenteException {        
         Banco.conectar();
-        Item item = new Item();
+        Item item;
         
         String sql = "select * from item where id = ?";
-        System.out.println(sql);
         pst = Banco.getConexao().prepareStatement(sql);
         pst.setInt(1, obj.getId());
         rs = pst.executeQuery();
         
         if (rs.next()){
-           
+           item = new Item(rs.getString("descricao"), rs.getFloat("valor_minimo"), rs.getString("senha"));
+           item.setValorAtual(rs.getFloat("valor_atual"));
+           if (rs.getString("vencedor") != null){
+               Usuario usuario = new Usuario();
+               Conta conta = new Conta();
+               conta.setLogin(rs.getString("vencedor"));
+               usuario.setConta(conta);
+               item.setVencedor((Participante)new UsuarioDAO().select(usuario));
+           }
         }else{
             throw new ContaInexistenteException();
         }
-        usuario.setConta(conta);
+        //usuario.setConta(conta);
         Banco.desconectar();
-        return null;
+        return item;
     }
 
     @Override
     public void delete(Item obj) throws ClassNotFoundException, SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "DELETE FROM usuario WHERE id = " + obj.getId();
+        Banco.executeUpdate(sql);
     }
 
     @Override

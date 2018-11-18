@@ -4,24 +4,24 @@ create database if not exists leilao;
 use leilao;
 
 create table if not exists usuario (
-    id int auto_increment not null,
     nome varchar(30),
     total_lances int default 0,
     total_itens_ganhos int default 0,
     tipo_conta varchar(30) default 'participante',
     login varchar(30) not null,
     senha varchar(30) not null,
-    primary key (id)
+    primary key (login)
 );
 
 create table if not exists item (
     id int auto_increment not null,
-    vendedor int,
+    vendedor varchar(30),
     nome varchar(30) not null,
     descricao varchar(180),
     valor_inicial decimal(3, 2) not null,
     valor_atual decimal(3, 2) not null,
     senha varchar(30) not null,
+    em_leilao boolean default true,
     primary key (id)
 );
 
