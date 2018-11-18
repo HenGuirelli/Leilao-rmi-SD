@@ -4,6 +4,9 @@ import br.com.fatec.controller.LeilaoController;
 import br.com.fatec.model.Item;
 import br.com.fatec.model.Participante;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class FRMEncerrarLeilao extends javax.swing.JFrame {
@@ -155,8 +158,8 @@ public class FRMEncerrarLeilao extends javax.swing.JFrame {
             Item item = controller.listar().get(tblItens.getSelectedRow());
             controller.encerrar(item.getVencedor(), item);
             JOptionPane.showMessageDialog(null, "Leilão cancelado");
-        } catch (RemoteException ex) {
-            ex.printStackTrace();
+        } catch (RemoteException | ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao encerrar leilao: " + ex.getMessage());
             JOptionPane.showMessageDialog(null, "Erro ao encerrar leilao: " + ex.getMessage());
         }
     }//GEN-LAST:event_btnEncerrarActionPerformed

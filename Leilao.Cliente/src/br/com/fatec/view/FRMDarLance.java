@@ -9,6 +9,7 @@ import br.com.fatec.config.Config;
 import br.com.fatec.controller.LeilaoController;
 import br.com.fatec.model.Item;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -137,12 +138,11 @@ public class FRMDarLance extends javax.swing.JFrame {
                 return;
             }
             
-            
             controller.darLance(item, lance);
             tblItens.clearSelection();
             JOptionPane.showMessageDialog(this, "Lance feito");
             
-        } catch (RemoteException ex) {
+        } catch (RemoteException | ClassNotFoundException | SQLException ex) {
             JOptionPane.showMessageDialog(this, Config.Texts.Error.REMOTE_EXCEPTION);
         }
     }//GEN-LAST:event_btnDarLanceActionPerformed

@@ -9,7 +9,6 @@ import br.com.fatec.model.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.MessageFormat;
 
 public class UsuarioDAO implements DAO<Usuario>{
     private PreparedStatement pst;
@@ -56,7 +55,6 @@ public class UsuarioDAO implements DAO<Usuario>{
                 conta.setTipoConta(TipoConta.LEILOEIRO);
                 leiloeiro = new Leiloeiro();
                 leiloeiro.setNome(rs.getString("nome"));
-                leiloeiro.setId(rs.getInt("id"));
                 usuario =  leiloeiro;
             }
         }else{

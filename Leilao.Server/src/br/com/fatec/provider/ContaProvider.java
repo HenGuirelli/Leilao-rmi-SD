@@ -1,17 +1,17 @@
 package br.com.fatec.provider;
 
 import br.com.fatec.DAO.UsuarioDAO;
-import br.com.fatec.DTO.ILoginDTO;
 import br.com.fatec.exceptions.ContaExisteException;
 import br.com.fatec.model.Conta;
 import br.com.fatec.exceptions.ContaInexistenteException;
+import br.com.fatec.interfaces.ILoginProvider;
 import br.com.fatec.model.Participante;
 import br.com.fatec.model.Usuario;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ContaProvider implements ILoginDTO {
+public class ContaProvider implements ILoginProvider {
     
     public void save(Conta conta) throws ContaExisteException{
         UsuarioDAO dao = new UsuarioDAO();

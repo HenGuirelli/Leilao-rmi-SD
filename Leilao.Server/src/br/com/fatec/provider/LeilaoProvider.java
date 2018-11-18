@@ -1,39 +1,51 @@
 package br.com.fatec.provider;
 
 import br.com.fatec.DAO.LeilaoDAO;
-import br.com.fatec.DTO.ILeilaoDTO;
+import br.com.fatec.interfaces.ILeilaoProvider;
 import br.com.fatec.model.Item;
 import br.com.fatec.model.Leilao;
 import br.com.fatec.model.Participante;
 import br.com.fatec.model.Usuario;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class LeilaoProvider implements ILeilaoDTO {
+public class LeilaoProvider implements ILeilaoProvider {
     private Leilao leilao = new Leilao();
     private LeilaoDAO dao = new LeilaoDAO();
     
-    public void cadastrar(Item item) throws RemoteException {
-        //dao.insert(leilao);
+    @Override
+    public void cadastrar(Item item) throws RemoteException, ClassNotFoundException, SQLException {
+        try {
+            dao.insert(item);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(LeilaoProvider.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    public void remover(Item item) throws RemoteException {
-        //dao.delete(item);
+    @Override
+    public void remover(Item item) throws RemoteException, ClassNotFoundException, SQLException  {
+        dao.delete(item);
     }
 
     public void encerrar(Participante vencedor, Item item) throws RemoteException {
         
     }
 
-    public void iniciar() throws RemoteException {
-        
-    }
-
-    public List<Item> listar() throws RemoteException {
+    @Override
+    public List<Item> listar() throws RemoteException, ClassNotFoundException, SQLException {
         return dao.listar();
     }
 
-    public void darLance(Item item, Usuario usuario, float valor) throws RemoteException {        
-        
+    @Override
+    public void atualizar(Item obj) throws RemoteException, ClassNotFoundException, SQLException {
+        dao.update(obj);
+    }
+
+    @Override
+    public void iniciar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

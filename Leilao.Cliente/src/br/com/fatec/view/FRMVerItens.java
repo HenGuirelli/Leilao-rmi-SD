@@ -9,7 +9,10 @@ import br.com.fatec.config.Config;
 import br.com.fatec.controller.LeilaoController;
 import br.com.fatec.model.Item;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -26,7 +29,11 @@ public class FRMVerItens extends javax.swing.JFrame {
         
         List<Item> itens = null;
         try {
-            itens = controller.listar();
+            try {
+                itens = controller.listar();
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(FRMVerItens.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (RemoteException ex) {
             JOptionPane.showMessageDialog(null, Config.Texts.Error.REMOTE_EXCEPTION);
             return;

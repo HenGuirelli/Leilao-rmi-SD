@@ -1,19 +1,20 @@
 package br.com.fatec.controller;
 
-import br.com.fatec.DTO.*;
 import br.com.fatec.config.Config;
+import br.com.fatec.interfaces.ILeilaoProvider;
+import br.com.fatec.interfaces.ILoginProvider;
 import java.rmi.RemoteException;
 
 class ProviderFactory {
-    static ILoginDTO createContaProvider() throws RemoteException{
+    static ILoginProvider createContaProvider() throws RemoteException{
         if (Config.USE_FAKE_PROVIDER)
             return new br.com.fatec.fake.Provider.ContaProvider();
         return new br.com.fatec.provider.ContaProvider();
     }
     
-    static ILeilaoDTO createLeilaoProvider() throws RemoteException {
+    static ILeilaoProvider createLeilaoProvider() throws RemoteException {
         if (Config.USE_FAKE_PROVIDER)
             return new br.com.fatec.fake.Provider.LeilaoProvider();
-        return null;//new br.com.fatec.provider.LeilaoProvider();
+        return new br.com.fatec.provider.LeilaoProvider();
     }
 }

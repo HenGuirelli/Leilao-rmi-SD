@@ -1,14 +1,15 @@
 package br.com.fatec.fake.Provider;
 
-import br.com.fatec.DTO.ILeilaoDTO;
+import br.com.fatec.interfaces.ILeilaoProvider;
 import br.com.fatec.model.Item;
 import br.com.fatec.model.Leilao;
 import br.com.fatec.model.Participante;
 import br.com.fatec.model.Usuario;
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 import java.util.List;
 
-public class LeilaoProvider implements ILeilaoDTO {
+public class LeilaoProvider implements ILeilaoProvider {
     private Leilao leilao = new Leilao();    
     
     public void cadastrar(Item item) throws RemoteException {
@@ -24,7 +25,7 @@ public class LeilaoProvider implements ILeilaoDTO {
         leilao.getItens().remove(item);
     }
 
-    public void iniciar() throws RemoteException {
+    public void iniciar() throws RemoteException, ClassNotFoundException, SQLException {
         leilao.setAberto(true);
     }
 
@@ -46,4 +47,9 @@ public class LeilaoProvider implements ILeilaoDTO {
         item.setVencedor((Participante)usuario);
         leilao.addItem(item);
     }    
+
+    @Override
+    public void atualizar(Item obj) throws RemoteException, ClassNotFoundException, SQLException {
+      /**/
+    }
 }
