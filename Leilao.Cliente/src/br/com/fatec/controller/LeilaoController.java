@@ -49,29 +49,31 @@ public class LeilaoController {
             @Override
             public void run(){
                 while (true){
-                    List<Item> itens = null;
-                    try {
-                        itens = listar();
-                    } catch (RemoteException | ClassNotFoundException | SQLException ex) {
-                        //ex.printStackTrace();
-                    }
-
-                    DefaultTableModel model = (DefaultTableModel) table.getModel();
-                    int oldSelect = table.getSelectedRow();
-                    model.setRowCount(0);
-                    for(Item item : itens){
-                        String [] row = new String[] {item.getNome(), item.getValoMinimo() + "", item.getValorAtual() + ""};
-                        model.addRow(row);
-                    }
                     try{
-                        table.setRowSelectionInterval(oldSelect, oldSelect);
-                    }catch(Exception e){}
-                    
-                    try {
-                        sleep(1000);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(LeilaoController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                        List<Item> itens = null;
+                        try {
+                            itens = listar();
+                        } catch (RemoteException | ClassNotFoundException | SQLException ex) {
+                            //ex.printStackTrace();
+                        }
+
+                        DefaultTableModel model = (DefaultTableModel) table.getModel();
+                        int oldSelect = table.getSelectedRow();
+                        model.setRowCount(0);
+                        for(Item item : itens){
+                            String [] row = new String[] {item.getNome(), item.getValoMinimo() + "", item.getValorAtual() + ""};
+                            model.addRow(row);
+                        }
+                        try{
+                            table.setRowSelectionInterval(oldSelect, oldSelect);
+                        }catch(Exception e){}
+
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(LeilaoController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }catch(Exception ex){}
                 }
             }
         }.start();

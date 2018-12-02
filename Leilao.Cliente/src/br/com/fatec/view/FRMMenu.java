@@ -1,15 +1,32 @@
 package br.com.fatec.view;
 
 import br.com.fatec.controller.LeilaoController;
+import br.com.fatec.enums.TipoConta;
+import br.com.fatec.model.ExecutionContext;
 
 public class FRMMenu extends javax.swing.JFrame {
     LeilaoController controller = new LeilaoController();
+    
+    private boolean darLanceEnabled       = true, 
+                    encerrarLeilaoEnabled = true, 
+                    cadastrarItemEnabled  = true;
         
     public FRMMenu() {
         initComponents();
         
         controller.preencheTabelaAsync(tblItens);
         setLocationRelativeTo(null);
+        
+        TipoConta tipoConta = ExecutionContext.getUsuario().getConta().getTipoConta();
+        if ( tipoConta == TipoConta.LEILOEIRO){
+            darLanceEnabled = false;
+            darLance.setEnabled(false);
+        }else if(tipoConta == TipoConta.PARTICIPANTE){
+            encerrarLeilaoEnabled = false;
+            cadastrarItemEnabled = false;
+            encerrarLeilao.setEnabled(false);
+            cadastrarItem.setEnabled(false);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -132,15 +149,18 @@ public class FRMMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrarItemMenuKeyPressed
 
     private void cadastrarItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarItemMouseClicked
-        show(new FRMCadastrarItem());
+        if (cadastrarItemEnabled)
+            show(new FRMCadastrarItem());
     }//GEN-LAST:event_cadastrarItemMouseClicked
 
     private void darLanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_darLanceMouseClicked
-        show(new FRMDarLance());
+        if (darLanceEnabled)
+            show(new FRMDarLance());
     }//GEN-LAST:event_darLanceMouseClicked
 
     private void encerrarLeilaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_encerrarLeilaoMouseClicked
-        show(new FRMEncerrarLeilao());
+        if (encerrarLeilaoEnabled)
+            show(new FRMEncerrarLeilao());
     }//GEN-LAST:event_encerrarLeilaoMouseClicked
 
     private void show(javax.swing.JFrame frame){
