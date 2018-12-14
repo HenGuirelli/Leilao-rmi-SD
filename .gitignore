@@ -1,0 +1,12 @@
+/Leilao.Common/nbproject/private/
+/Leilao.Server/nbproject/private/
+/Leilao.Cliente/build/
+/Leilao.Cliente/nbproject/private/
+/Leilao.Common/build/
+/Leilao.Provider/nbproject/private/
+/Leilao.Server/build/
+/Leilao.Common/dist/
+/Leilao.Server/javamail-1.4.5/*
+!/Leilao.Server/javamail-1.4.5/*.jar
+/Leilao.Server/mysql-connector-java-5.1.47/*
+!/Leilao.Server/mysql-connector-java-5.1.47/*.jar
